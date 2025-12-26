@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+</head>
+<body>
+  <h1>
+    
+  </h1>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM Master Pro - Safety Corrected</title>
+    <style>
+        :root { --red: #dc3545; --yellow: #ffc107; --green: #28a745; --dark: #2c3e50; --blue: #003366; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 10px; color: #333; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); }
+        
+        h1 { text-align: center; color: var(--blue); text-transform: uppercase; border-bottom: 4px solid var(--blue); margin-bottom: 5px; }
+        .subtitle { text-align: center; font-size: 13px; color: #666; margin-bottom: 20px; }
+
+        .plan-box { background: #fff9db; border: 2px solid #f1c40f; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .plan-box h2 { margin-top: 0; font-size: 16px; color: #856404; display: flex; align-items: center; }
+        .step { margin-bottom: 10px; font-size: 13px; line-height: 1.4; display: flex; align-items: flex-start; }
+        .step-num { background: #856404; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 10px; margin-right: 10px; flex-shrink: 0; margin-top: 2px; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .info-group label { font-size: 11px; font-weight: bold; color: var(--blue); display: block; margin-bottom: 4px; }
+        .info-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+
+        .status-box { text-align: center; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-weight: bold; font-size: 18px; border: 2px solid #ccc; }
+        .buy { background: #d4edda; color: #155724; }
+        .neg { background: #fff3cd; color: #856404; }
+        .walk { background: #f8d7da; color: #721c24; border: 4px solid var(--red); }
+
+        .col-labels { display: flex; background: #eee; padding: 5px 15px; font-size: 10px; font-weight: bold; border-bottom: 1px solid #ddd; }
+        .label-name { flex-grow: 1; }
+        .label-box { width: 50px; text-align: center; }
+
+        .fluid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .fluid-card { border: 1px solid #ddd; padding: 10px; border-radius: 8px; text-align: center; background: #fff; }
+        .color-bar { height: 25px; width: 100%; border-radius: 4px; margin: 4px 0; cursor: pointer; position: relative; border: 1px solid rgba(0,0,0,0.2); }
+        .bar-label { font-size: 9px; font-weight: bold; color: #555; }
+        
+        .oil-good { background: linear-gradient(to bottom, #b87333, #8b4513); }
+        .oil-bad { background: linear-gradient(to bottom, #4b3621, #211b11); }
+        .oil-fail { background: linear-gradient(to bottom, #dfcfbe, #c4a484); }
+        .trans-good { background: linear-gradient(to bottom, #ff4d4d, #800000); }
+        .trans-fail { background: linear-gradient(to bottom, #4a0404, #000000); }
+        .cool-good { background: linear-gradient(to bottom, #ffb347, #ff8c00); }
+        .cool-fail { background: linear-gradient(to bottom, #8b4513, #5c3c10); }
+
+        .section { margin-bottom: 15px; border-radius: 8px; overflow: hidden; border: 1px solid #ccc; }
+        .header-red { background: var(--red); color: white; padding: 12px; font-weight: bold; }
+        .header-yellow { background: #e67e22; color: white; padding: 12px; font-weight: bold; }
+        .header-green { background: var(--green); color: white; padding: 12px; font-weight: bold; }
+        .header-blue { background: var(--blue); color: white; padding: 12px; font-weight: bold; }
+
+        .row { display: flex; align-items: center; padding: 10px 15px; border-bottom: 1px solid #eee; background: white; }
+        .item-name { flex-grow: 1; font-size: 13px; }
+        .help-btn { background: #eee; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; cursor: pointer; margin-left: 8px; }
+        .help-text { display: none; font-size: 11px; color: #666; font-style: italic; width: 100%; padding: 5px 15px; background: #f9f9f9; }
+        
+        .check-cols { display: flex; width: 100px; justify-content: space-between; }
+        input[type="radio"] { transform: scale(1.6); cursor: pointer; }
+
+        .calc-area { background: var(--dark); color: white; padding: 25px; border-radius: 12px; position: relative; }
+        .calc-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .calc-input-row input { width: 100%; padding: 12px; border-radius: 5px; border: none; font-size: 18px; }
+        .repair-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 15px; }
+        .repair-btn { background: #e67e22; border: none; padding: 10px; border-radius: 5px; color: white; cursor: pointer; font-size: 11px; font-weight: bold; }
+        .final-target { font-size: 32px; text-align: center; color: #2ecc71; font-weight: bold; border-top: 1px solid #555; padding-top: 15px; }
+        
+        #lock-overlay { display: none; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(220, 53, 69, 0.98); border-radius: 12px; z-index:10; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+        
+        textarea { width: 100%; height: 120px; padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: sans-serif; box-sizing: border-box;}
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        .reset-btn { flex: 1; padding: 15px; background: #333; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .print-btn { flex: 1; padding: 15px; background: var(--blue); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        @media print { .reset-btn, .print-btn, .repair-grid, .calc-area button, .help-btn, .plan-box { display: none; } }
+    </style>
+</head>
+<body>
+
+<div class="container" id="reportArea">
+    <h1>GM Master Inspector Pro</h1>
+    <p class="subtitle">Diagnostic Roadmap & Valuation Tool</p>
+
+    <div class="info-grid">
+        <div class="info-group"><label>YEAR/MAKE/MODEL</label><input type="text" id="v_model"></div>
+        <div class="info-group"><label>ASKING PRICE ($)</label><input type="number" id="ask_price" value="0" oninput="doMath()"></div>
+        <div class="info-group"><label>MILEAGE</label><input type="text" id="v_miles"></div>
+        <div class="info-group"><label>VIN/PLATE</label><input type="text" id="v_vin"></div>
+    </div>
+
+    <div class="plan-box">
+        <h2>🚀 INSPECTION BATTLE PLAN</h2>
+        <div class="step"><div class="step-num">1</div><div><b>COLD CHECK:</b> Check Oil/Coolant/Trans fluids BEFORE starting. Look for milk/glitter.</div></div>
+        <div class="step"><div class="step-num">2</div><div><b>COLD START:</b> Listen for 10s of Lifter Tick or Piston Slap. Watch exhaust smoke.</div></div>
+        <div class="step"><div class="step-num">3</div><div><b>DRIVE (15 MINS):</b> Reach 65 MPH for bearings/4th gear. Cycle 4WD Hi/Lo.</div></div>
+        <div class="step"><div class="step-num">4</div><div><b>HOT TEST:</b> Get temp to 210°F. Stop and check Oil Pressure AT IDLE IN GEAR.</div></div>
+        <div class="step"><div class="step-num">5</div><div><b>POST-DRIVE:</b> Check ground for fresh Rear Main or Trans drips.</div></div>
+    </div>
+
+    <div id="status-warning" class="status-box buy">STATUS: READY</div>
+
+    <div class="fluid-grid">
+        <div class="fluid-card">
+            <label class="bar-label">ENGINE OIL</label>
+            <div class="color-bar oil-good" title="Honey"></div>
+            <div class="color-bar oil-bad" title="Black"></div>
+            <div class="color-bar oil-fail" title="Milky" onclick="forceCritical('[OIL]: Milky fluid - Head Gasket failure.')"></div>
+        </div>
+        <div class="fluid-card">
+            <label class="bar-label">TRANS FLUID</label>
+            <div class="color-bar trans-good" title="Red"></div>
+            <div class="color-bar trans-fail" title="Burnt" onclick="forceCritical('[TRANS]: Burnt fluid - Internal damage.')"></div>
+        </div>
+        <div class="fluid-card">
+            <label class="bar-label">COOLANT</label>
+            <div class="color-bar cool-good" title="Orange"></div>
+            <div class="color-bar cool-fail" title="Sludge" onclick="forceCritical('[COOLANT]: Sludge detected - possible oil mix.')"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="header-blue">📊 GAUGE & LEVEL MONITOR (Running)</div>
+        <div class="col-labels"><div class="label-name">GAUGE</div><div class="label-box">PASS</div><div class="label-box">FAIL</div></div>
+        <div id="gauge-container"></div>
+    </div>
+
+    <div class="section">
+        <div class="header-red">🛑 RED FLAGS (CRITICAL)</div>
+        <div class="col-labels"><div class="label-name">COMPONENT</div><div class="label-box">PASS</div><div class="label-box">FAIL</div></div>
+        <div id="red-container"></div>
+    </div>
+
+    <div class="section">
+        <div class="header-yellow">⚠️ YELLOW FLAGS (NEGOTIATION)</div>
+        <div class="col-labels"><div class="label-name">COMPONENT</div><div class="label-box">PASS</div><div class="label-box">FAIL</div></div>
+        <div id="yellow-container"></div>
+    </div>
+
+    <div class="section">
+        <div class="header-green">✅ GREEN FLAGS (MAINTENANCE)</div>
+        <div class="col-labels"><div class="label-name">COMPONENT</div><div class="label-box">PASS</div><div class="label-box">FAIL</div></div>
+        <div id="green-container"></div>
+    </div>
+
+    <div class="calc-area">
+        <div id="lock-overlay"><p style="color:white; font-weight:bold;">🛑 CRITICAL FAILURE<br>OFFER NOT RECOMMENDED</p><button style="padding:10px" onclick="unlockCalc()">UNLOCK</button></div>
+        <div class="calc-input-row">
+            <div><label>REPAIR BUDGET ($)</label><input type="number" id="rep_budget" value="0" oninput="doMath()"></div>
+            <div><label>TARGET OFFER ($)</label><div id="final_offer" class="final-target" style="padding:0; border:none; margin:0; text-align:left;">$0</div></div>
+        </div>
+        <div class="repair-grid">
+            <button class="repair-btn" onclick="addRepair(4000)">AFM Delete ($4k)</button>
+            <button class="repair-btn" onclick="addRepair(4500)">Trans Repl ($4.5k)</button>
+            <button class="repair-btn" onclick="addRepair(1800)">T-Case ($1.8k)</button>
+            <button class="repair-btn" onclick="addRepair(1000)">Rear Main Seal ($1k)</button>
+            <button class="repair-btn" onclick="addRepair(900)">Fuel Pump ($900)</button>
+            <button class="repair-btn" onclick="addRepair(1200)">Suspension Kit ($1.2k)</button>
+            <button class="repair-btn" onclick="addRepair(600)">Water Pump ($600)</button>
+            <button class="repair-btn" onclick="addRepair(500)">Brake Service ($500)</button>
+        </div>
+    </div>
+
+    <textarea id="notes" placeholder="Detailed Report & Auto-Diagnostics..."></textarea>
+    
+    <div class="btn-group">
+        <button class="print-btn" onclick="window.print()">PRINT/SAVE PDF REPORT</button>
+        <button class="reset-btn" onclick="if(confirm('Reset?')) location.reload()">RESET</button>
+    </div>
+</div>
+
+<script>
+    const data = {
+        gauge: [
+            {n: "Oil Pressure (Hot Idle)", h: "20-40 PSI", d: "[CRITICAL]: Low Hot Oil Pressure.", critical: true},
+            {n: "Water Temp (Steady)", h: "210F steady", d: "[WATER TEMP]: Overheating issue.", critical: true},
+            {n: "Trans Temp (Drive)", h: "150-190F", d: "[TRANS TEMP]: Transmission overheating.", critical: true},
+            {n: "Voltmeter", h: "13-14.5V", d: "[VOLTMETER]: Alternator/Battery failure.", critical: false},
+            {n: "Fluid Levels (Dipsticks)", h: "Check sticks", d: "[FLUIDS]: Extremely low levels.", critical: false}
+        ],
+        red: [
+            {n: "Engine Knock/Slap", h: "Deep thud", d: "[ENGINE KNOCK]: Internal failure."},
+            {n: "AFM Lifter Tick", h: "Sharp chirp", d: "[LIFTER TICK]: AFM lifter/cam failure."},
+            {n: "Trans Slip/Harsh Shift", h: "High revs", d: "[TRANS SLIP]: Internal failure."},
+            {n: "Frame Structural Rust", h: "Flaking metal", d: "[FRAME]: Severe structural rust."},
+            {n: "Active AFM Misfire", h: "Shaking idle", d: "[MISFIRE]: AFM cylinder failure."},
+            {n: "Head Gasket Failure", h: "White smoke", d: "[HEAD GASKET]: Coolant/Oil mix."},
+            {n: "Low Oil Pressure Warning", h: "Chime active", d: "[OIL WARNING]: Damage risk."},
+            {n: "T-Case Pump Rub Leak", h: "Pinhole leak", d: "[T-CASE]: Case rub-through leak."}
+        ],
+        yellow: [
+            {n: "Fuel Pressure (Slow Start)", h: "Long crank", d: "[FUEL]: Pump/Valve failing."},
+            {n: "Rear Main Seal Leak", h: "Active drip", d: "[RMS LEAK]: Trans removal needed."},
+            {n: "Service 4WD / Actuator", h: "Stuck gears", d: "[4WD]: Encoder/Switch fault."},
+            {n: "Brake Line Corrosion", h: "Orange rust", d: "[BRAKE LINES]: Imminent failure risk."},
+            {n: "Cooling Leaks", h: "Orange crust", d: "[COOLANT]: External leak."},
+            {n: "Power Steering Leaks", h: "Moaning noise", d: "[PS LEAK]: Pump/Rack leaking."},
+            {n: "Suspension Bushings", h: "Popping sounds", d: "[SUSPENSION]: Arms/Joints worn."},
+            {n: "Tires (Wear/Rot)", h: "Side-wall cracks", d: "[TIRES]: Replace needed."},
+            {n: "Brakes (Shake/Noise)", h: "Warped rotors", d: "[BRAKES]: Rotor warp/pads worn."},
+            {n: "HVAC Actuators", h: "Clicking dash", d: "[HVAC]: Actuator failure."},
+            {n: "Wheel Bearings", h: "Humming noise", d: "[BEARINGS]: Hub assembly failure."},
+            {n: "U-Joints (Clunking)", h: "Clank into gear", d: "[U-JOINTS]: Drive-line play."}
+        ],
+        green: [
+            {n: "Exhaust Manifold Bolts", h: "Cold start tick", d: "[EXHAUST]: Broken bolts."},
+            {n: "Valve Cover Seepage", h: "Oil grime", d: "[GASKETS]: Minor seepage."},
+            {n: "Paint/Clear Coat", h: "Peeling/Sun", d: "[PAINT]: Clear coat damage."},
+            {n: "Interior Seat/Trim Wear", h: "Ripped bolsters", d: "[INTERIOR]: Seat damage."},
+            {n: "Gauge Cluster Motors", h: "Jumping needle", d: "[CLUSTER]: Motor failure."},
+            {n: "Lights & Horn", h: "Bulbs out", d: "[ELECTRICAL]: Minor issue."},
+            {n: "Window Regulators", h: "Grinding", d: "[WINDOWS]: Regulator failure."},
+            {n: "Spare Tire Presence", h: "Missing/Rusted", d: "[SPARE]: Missing/Seized."},
+            {n: "Battery/Alternator", h: "Corroded", d: "[ELECTRICAL]: Battery terminals."},
+            {n: "Tailgate Handle/Cables", h: "Loose handle", d: "[TAILGATE]: Snapped cables."}
+        ]
+    };
+
+    let manualUnlock = false;
+    let gaugeCriticalFailure = false;
+
+    function build(items, id, type) {
+        items.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'row-container';
+            div.innerHTML = `<div class="row">
+                <div class="item-name">${item.n} <button class="help-btn" onclick="toggleHelp(this)">?</button></div>
+                <div class="check-cols">
+                    <div style="width:50px; text-align:center;"><input type="radio" name="${type}${i}" onchange="countLogic()"></div>
+                    <div style="width:50px; text-align:center;"><input type="radio" name="${type}${i}" class="fail-radio fr-${type}" data-critical="${item.critical||false}" onchange="countLogic('${item.d}', ${item.critical||false})"></div>
+                </div>
+            </div><div class="help-text">${item.h}</div>`;
+            document.getElementById(id).appendChild(div);
+        });
+    }
+
+    function toggleHelp(btn) { 
+        const txt = btn.parentElement.parentElement.nextElementSibling;
+        txt.style.display = txt.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function forceCritical(diagText) {
+        gaugeCriticalFailure = true;
+        countLogic(diagText, true);
+    }
+
+    function addRepair(amt) { 
+        document.getElementById('rep_budget').value = (parseInt(document.getElementById('rep_budget').value) || 0) + amt; 
+        doMath(); 
+    }
+    
+    function unlockCalc() { 
+        manualUnlock = true; 
+        document.getElementById('lock-overlay').style.display = 'none'; 
+    }
+
+    function doMath() {
+        let ask = parseInt(document.getElementById('ask_price').value) || 0;
+        let rep = parseInt(document.getElementById('rep_budget').value) || 0;
+        document.getElementById('final_offer').innerText = "$" + (ask - rep).toLocaleString();
+    }
+
+    function countLogic(diagText, isCritical) {
+        if(diagText) {
+            let box = document.getElementById('notes');
+            if(!box.value.includes(diagText)) { box.value += diagText + "\n"; }
+        }
+
+        let reds = document.querySelectorAll('.fr-red:checked').length;
+        let criticalGauges = document.querySelectorAll('.fr-blue:checked[data-critical="true"]').length;
+        let totalCritical = reds + criticalGauges + (gaugeCriticalFailure ? 1 : 0);
+        
+        let yellows = document.querySelectorAll('.fr-yellow:checked').length;
+        let s = document.getElementById('status-warning');
+
+        if (totalCritical > 0) {
+            s.innerText = "🛑 WALK AWAY (" + totalCritical + " CRITICAL)";
+            s.className = "status-box walk";
+            if(!manualUnlock) document.getElementById('lock-overlay').style.display='flex';
+        } else if (yellows > 1) {
+            s.innerText = "⚠️ NEGOTIATE (" + yellows + " ISSUES)";
+            s.className = "status-box neg";
+            document.getElementById('lock-overlay').style.display='none';
+        } else {
+            s.innerText = "✅ BUY";
+            s.className = "status-box buy";
+            document.getElementById('lock-overlay').style.display='none';
+        }
+        doMath();
+    }
+
+    build(data.gauge, 'gauge-container', 'blue');
+    build(data.red, 'red-container', 'red');
+    build(data.yellow, 'yellow-container', 'yellow');
+    build(data.green, 'green-container', 'green');
+</script>
+</body>
+</html>
